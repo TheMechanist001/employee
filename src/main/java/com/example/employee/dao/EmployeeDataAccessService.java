@@ -47,10 +47,10 @@ public class EmployeeDataAccessService implements EmployeeDao
         final String sql = "SELECT id, name, department FROM employee WHERE id = ?";
         Employee employee = jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) ->
     {
-        UUID personId = UUID.fromString(resultSet.getString("id"));
+        UUID employeeId = UUID.fromString(resultSet.getString("id"));
         String name = resultSet.getString("name");
         String department = resultSet.getString("department");
-        return new Employee(id, name, department);
+        return new Employee(employeeId, name, department);
     });
         return Optional.ofNullable(employee);
     }

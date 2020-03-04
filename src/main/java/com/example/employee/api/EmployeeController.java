@@ -3,7 +3,6 @@ package com.example.employee.api;
 import com.example.employee.model.Employee;
 import com.example.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,19 +34,19 @@ public class EmployeeController
         return employeeService.getAllEmployee();
     }
 
-    @GetMapping(path = {"id"})
+    @GetMapping(path = "{id}")
     public Employee getEmployeeById(@PathVariable("id") UUID id)
     {
         return employeeService.getEmployeeById(id).orElse(null);
     }
 
-    @PutMapping(path = {"id"})
+    @PutMapping(path = "{id}")
     public void updateEmployeeById(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Employee employeeToUpdate)
     {
         employeeService.updateEmployee(id, employeeToUpdate);
     }
 
-    @DeleteMapping(path = {"id"})
+    @DeleteMapping(path = "{id}")
     public void deleteEmployeeById(@PathVariable("id") UUID id)
     {
         employeeService.deleteEmployee(id);
